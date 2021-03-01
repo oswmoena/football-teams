@@ -15,7 +15,7 @@ app.get("/leagues", (req, res, next) => {
   return League.find({ state: true }, "name country code")
     .skip(from)
     .limit(per)
-    .exec((err, leagues) => {
+    .exec((err, data) => {
       if (err) {
         return res.status(400).json({
           ok: false,
@@ -27,7 +27,7 @@ app.get("/leagues", (req, res, next) => {
         if (err) throw err;
         res.status(200).json({
           ok: true,
-          leagues,
+          data,
           count,
         });
       });

@@ -26,10 +26,10 @@ app.get("/teams", (req, res, next) => {
 
       Team.estimatedDocumentCount((err, count) => {
         if (err) throw err;
-        League.populate(teams, { path: "league" }, function (err, teams) {
+        League.populate(teams, { path: "league" }, function (err, data) {
           res.status(200).json({
             ok: true,
-            teams,
+            data,
             count,
           });
         });
